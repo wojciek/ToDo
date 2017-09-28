@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>My Simple Todo</title>
+    <link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row" ng-controller="todoController">
+
+
+
+
+        <div class="text-center" style="margin-top: 50px;">
+            <h2>{{webPageTitle}} | <span class="alert-success">Wiadomość: {{message}}</span></h2>
+        </div>
+        <div class="col-md-4 col-md-offset-4" style="margin-top: 50px;">
+            <form>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Wpisz tytuł" ng-model="Item.Title">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" ng-click="addTodo()">Add</button>
+                    </span>
+                </div>
+                <hr>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon">Filter: </span>
+                    <input type="text" class="form-control" placeholder="filter exceptions" ng-model="search">
+                </div>
+
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr></tr>
+                            <br>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="Item in reverse(messageSample.data) | filter : search">
+                                <td>
+                                    {{$index}}
+                                </td>
+                                <td>
+                                    {{Item.id}}
+                                </td>
+                                <td class="text-danger">
+                                    {{Item.title}}
+                                </td>
+
+                                <td><button ng-click="edit =! edit" class="btn btn-default btn-xs">EDIT</button></td>
+                                <td><button ng-click="deleteTodo(Item)" class="btn btn-danger btn-xs">DELETE</button></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+            <div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="/lib/angular/angular.js"></script>
+    <script src="/app/app.js"></script>
+    <script src="/app/controller.js"></script>
+</body>
+</html>
